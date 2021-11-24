@@ -1,29 +1,27 @@
 package com.ea.SpringBasic.pages;
 
+import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
-@Component
-@ConditionalOnProperty(name ="env", havingValue = "qa")
-public class MainPage {
+import java.sql.SQLOutput;
 
-    public MainPage(){
-        System.out.println("In Main Page");
-    }
+@Component
+//@ConditionalOnProperty(name ="env", havingValue = "qa")
+public class MainPage extends BasePage {
+
     @Autowired
     private HomePage homepage;
     @Autowired
     private LoginPage loginPage;
-   // public MainPage(LoginPage loginPage,HomePage homepage) {
-       // this.loginPage=loginPage;
-      //  this.homepage = homepage;
-
-  //  }
+    @Autowired
+    private WebDriver webDriver;
 
     public  void PerformLogin(){
         homepage.ClickLogin();
-        loginPage.Login("admins","password123456");
+        loginPage.Login("admin","password");
         loginPage.ClickLogin();
     }
 
